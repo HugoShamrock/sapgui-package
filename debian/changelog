@@ -1,6 +1,6 @@
 sapgui-package (0.0.1) unstable; urgency=low
 
   * Initial Release, inspired by java-package, installation commandline taken
-    from Matthias Schmitt's non public sapgui package.
+    from Matthias Schmitz's non public sapgui package.
 
  -- Guido Günther <agx@sigxcpu.org>  Thu, 08 Jan 2009 18:54:30 +0100

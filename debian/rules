@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+VERSION := $(shell head -n 1 $(CURDIR)/debian/changelog | sed 's/.*(//;s/).*//')
+
+DEB_PYTHON_SYSTEM = pysupport
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/python-distutils.mk
+
+configure/sapgui-package::
+	sed s/@VERSION@/$(VERSION)/ make-sgpkg.py > make-sgpkg
+
+clean::
+	rm -f make-sgpkg
+	rm -rf build

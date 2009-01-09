@@ -10,7 +10,7 @@ VCS-Browser: http://git.debian.org/?p=users/agx/sapgui-package.git
 Package: sapgui-package
 Architecture: all
 Depends: cdbs, fakeroot, java5-runtime, ${python:Depends}
-Description: utility to build SAPGui related Debian packages
+Description: utility to build SAP GUI related Debian packages
  This package provides the capability to create a Debian package for the
  Platinum Java SAP GUI from the provided JAR by just running 
  'make-sgpkg <filename>'.

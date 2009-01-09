@@ -18,7 +18,7 @@
 
 from distutils.core import setup
 
-setup(name = "make_sapgui",
+setup(name = "sapgui_package",
       author = 'Guido Guenther',
       author_email = 'agx@sigxcpu.org',
       scripts = [ 'make-sgpkg' ],

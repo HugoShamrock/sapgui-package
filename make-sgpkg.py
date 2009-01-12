@@ -85,7 +85,7 @@ Standards-Version: 3.8.0
 
 Package: sapgui
 Architecture: i386
-Depends: ${shlibs:Depends}, java2-runtime
+Depends: ${shlibs:Depends}, openjdk-6-jre | java2-runtime
 Description: SAP GUI for the Java Environment
  This package has been automatically created with sapgui-package %(version)s
 """ % dict(name=name, email=email, version=version)

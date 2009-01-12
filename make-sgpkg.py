@@ -21,6 +21,7 @@
 import glob
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -153,36 +154,43 @@ def main(argv):
 
     try:
         if len(args) != 1:
-            raise SapGuiPkgError, "No jar given try '%s--help'" % prog
+            raise SapGuiPkgError, "No jar given try '%s --help'" % prog
         else:
             jar = args[0]
 
         tmpdir = tempfile.mkdtemp(prefix=prog)
-        destdir = os.path.join(tmpdir, 'dest')
+        pkgdir = os.path.join(tmpdir, "sapgui-java")
+        destdir = os.path.join(pkgdir, 'dest')
+        debiandir = os.path.join(pkgdir, 'debian')
+        os.mkdir(pkgdir)
+        os.mkdir(debiandir)
+
         print "Extracting '%s' to '%s'" % (jar, destdir)
         extract_sapgui_jar(jar, destdir)
-        debiandir = os.path.join(tmpdir, 'debian')
-        os.mkdir(debiandir)
+
         sg_version = get_version(destdir)
+        pkg = "sapgui_%s_i386.deb" % sg_version
         gen_changelog(debiandir, version, options.maintainer, options.email, sg_version)
         gen_control(debiandir, version, options.maintainer, options.email)
         gen_rules(debiandir)
         gen_install(debiandir)
         gen_copyright(debiandir)
         gen_links(debiandir, sg_version)
-        print "Building Debain package at '%s'" % tmpdir
-        build_sapgui_deb(tmpdir)
+
+        print "Building Debain package at '%s'" % pkgdir
+        build_sapgui_deb(pkgdir)
+        result = os.path.abspath(os.path.join(tmpdir, pkg))
+        shutil.move(result, os.path.curdir)
     except SapGuiPkgError, msg:
         print >>sys.stderr, msg
     else:
-        result = os.path.abspath(os.path.join(tmpdir,"..","sapgui_%s_i386.deb" % sg_version))
-        print "Created sapgui package at %s" % result
+        print "Created '%s'" % pkg
         ret = 0
 
     if tmpdir:
         if verbose:
-            print "Cleaning up Tempdir at %s" % tmpdir
-        subprocess.call(["/bin/rm", "-rf", "%s" % tmpdir])
+            print "Cleaning up tempdir at %s" % tmpdir
+        shutil.rmtree(tmpdir)
 
     return ret
 

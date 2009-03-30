@@ -9,8 +9,9 @@ VCS-Browser: http://git.debian.org/?p=users/agx/sapgui-package.git
 
 Package: sapgui-package
 Architecture: all
-Depends: cdbs, fakeroot, java5-runtime, ${python:Depends}, libxext6,
- libxpm4, libxt6, libxp6, libgnomevfs2-0, libbonobo2-0, kdelibs4c2a
+Depends: cdbs, fakeroot, java5-runtime, ${python:Depends}, libxext6, libxpm4,
+ libxt6, libxp6, libgnomevfs2-0 [i386], libbonobo2-0 [i386], kdelibs4c2a [i386],
+ ia32-libs [amd64]
 Description: utility to build SAP GUI related Debian packages
  This package provides the capability to create a Debian package for the
  Platinum Java SAP GUI from the provided JAR by just running 

@@ -29,6 +29,7 @@ from email.Utils import formatdate
 from optparse import OptionParser
 
 verbose = False
+properties = "~/.platin.properties"
 
 class SapGuiPkgError(Exception):
     pass
@@ -84,7 +85,7 @@ Build-Depends: debhelper (>= 4.0.0)
 Standards-Version: 3.8.0
 
 Package: sapgui
-Architecture: i386
+Architecture: i386 amd64
 Depends: ${shlibs:Depends}, openjdk-6-jre | java2-runtime
 Description: SAP GUI for the Java Environment
  This package has been automatically created with sapgui-package %(version)s
@@ -104,17 +105,23 @@ def gen_install(debiandir):
     write_file(debiandir, "install", contents)
 
 
-def gen_rules(debiandir):
+def gen_rules(debiandir, arch):
+    # ia32 libs is lacking KDE and Gnome libs:
+    excludes = [ "libKde3Connect.so", "libGnomeConnect.so" ]
+    if arch == "amd64":
+        amd64_ignore = " ".join([ "--exclude=%s" % e for e in  excludes ])
+    else:
+        amd64_ignore = ""
     contents = """#!/usr/bin/make -f
 export DH_COMPAT=5
 
 DEB_DH_STRIP_ARGS=nostrip
-DEB_DH_SHLIBDEPS_ARGS_ALL=-- --warnings=1
+DEB_DH_SHLIBDEPS_ARGS_ALL=%s -- --warnings=1
 include /usr/share/cdbs/1/rules/debhelper.mk
 
 install/sapgui::
 	rm -rf dest/usr/lib/sapgui/SAPGUI
-"""
+""" % amd64_ignore
     write_file(debiandir, "rules", contents)
     os.chmod(os.path.join(debiandir,"rules"), 0755)
 
@@ -152,6 +159,10 @@ def main(argv):
 
     verbose = options.verbose
 
+    if os.path.exists(os.path.expanduser(properties)):
+        print >>sys.stderr, "%s exists - this can cause problems. Please remove the file first." % properties
+        sys.exit(1)
+
     try:
         if len(args) != 1:
             raise SapGuiPkgError, "No jar given try '%s --help'" % prog
@@ -168,11 +179,13 @@ def main(argv):
         print "Extracting '%s' to '%s'" % (jar, destdir)
         extract_sapgui_jar(jar, destdir)
 
+        arch = os.popen("dpkg-architecture -qDEB_BUILD_ARCH").readlines()[0].strip()
+
         sg_version = get_version(destdir)
-        pkg = "sapgui_%s_i386.deb" % sg_version
+        pkg = "sapgui_%s_%s.deb" % (sg_version, arch)
         gen_changelog(debiandir, version, options.maintainer, options.email, sg_version)
         gen_control(debiandir, version, options.maintainer, options.email)
-        gen_rules(debiandir)
+        gen_rules(debiandir, arch)
         gen_install(debiandir)
         gen_copyright(debiandir)
         gen_links(debiandir, sg_version)
@@ -191,6 +204,7 @@ def main(argv):
         if verbose:
             print "Cleaning up tempdir at %s" % tmpdir
         shutil.rmtree(tmpdir)
+        os.unlink(os.path.expanduser(properties))
 
     return ret
 

@@ -204,7 +204,11 @@ def main(argv):
         if verbose:
             print "Cleaning up tempdir at %s" % tmpdir
         shutil.rmtree(tmpdir)
-        os.unlink(os.path.expanduser(properties))
+        try:
+            os.stat(os.path.expanduser(properties))
+            os.unlink(os.path.expanduser(properties))
+        except OSError:
+            pass # ignore missing file or unlink error
 
     return ret
 

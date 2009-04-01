@@ -1,3 +1,12 @@
+sapgui-package (0.0.3) unstable; urgency=low
+
+  * [4307afa] fix build for amd64 since the package is built against
+    ia32 libs we need to exclude some files from the shlibdeps call.
+  * [a632da0] ignore unlink errors
+  * many thanks to Jan Hauss for feedback and testing
+
+ -- Guido Günther <agx@sigxcpu.org>  Wed, 01 Apr 2009 10:36:10 +0200
+
 sapgui-package (0.0.2) unstable; urgency=low
 
   * [1a62f44] add vcs-browser

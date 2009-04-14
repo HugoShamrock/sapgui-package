@@ -3,15 +3,17 @@ Section: contrib/misc
 Priority: extra
 Maintainer: Guido Günther <agx@sigxcpu.org>
 Build-Depends: cdbs, debhelper (>= 7), python, python-support
-Standards-Version: 3.8.0
+Standards-Version: 3.8.1
 VCS-Git: http://honk.sigxcpu.org/git/sapgui-package.git
 VCS-Browser: http://git.debian.org/?p=users/agx/sapgui-package.git
 Homepage: https://honk.sigxcpu.org/piki/projects/sapgui-package/
 
 Package: sapgui-package
 Architecture: all
-Depends: cdbs, fakeroot, java5-runtime, ${python:Depends}, libxext6, libxpm4,
- libxt6, libxp6, libgnomevfs2-0 [i386], libbonobo2-0 [i386], kdelibs4c2a [i386],
+Depends:  cdbs, fakeroot, java5-runtime,
+ ${misc:Depends}, ${python:Depends}, python,
+ libxext6, libxpm4, libxt6, libxp6,
+ libgnomevfs2-0 [i386], libbonobo2-0 [i386], kdelibs4c2a [i386],
  ia32-libs [amd64]
 Description: utility to build SAP GUI related Debian packages
  This package provides the capability to create a Debian package for the

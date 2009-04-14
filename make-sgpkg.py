@@ -130,6 +130,18 @@ def gen_links(debiandir, version):
     contents = """usr/lib/sapgui/SAPGUI%(version)s/doc usr/share/doc/sapgui/doc
 usr/lib/sapgui/SAPGUI%(version)s/bin/guilogon usr/bin/sapguilogon
 usr/lib/sapgui/SAPGUI%(version)s/bin/guistart usr/bin/sapguistart
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/128x128/apps/guilogon.png   /usr/share/icons/hicolor/128x128/apps/guilogon.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/128x128/apps/SAPClients.png /usr/share/icons/hicolor/128x128/apps/SAPClients.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/64x64/apps/guilogon.png   /usr/share/icons/hicolor/64x64/apps/guilogon.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/64x64/apps/SAPClients.png /usr/share/icons/hicolor/64x64/apps/SAPClients.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/48x48/apps/guilogon.png   /usr/share/icons/hicolor/48x48/apps/guilogon.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/48x48/apps/SAPClients.png /usr/share/icons/hicolor/48x48/apps/SAPClients.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/32x32/apps/guilogon.png   /usr/share/icons/hicolor/32x32/apps/guilogon.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/32x32/apps/SAPClients.png /usr/share/icons/hicolor/32x32/apps/SAPClients.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/22x22/apps/guilogon.png   /usr/share/icons/hicolor/22x22/apps/guilogon.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/22x22/apps/SAPClients.png /usr/share/icons/hicolor/22x22/apps/SAPClients.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/16x16/apps/guilogon.png   /usr/share/icons/hicolor/16x16/apps/guilogon.png
+usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/16x16/apps/SAPClients.png /usr/share/icons/hicolor/16x16/apps/SAPClients.png
 """ % dict(version=version)
     write_file(debiandir, "links", contents)
 

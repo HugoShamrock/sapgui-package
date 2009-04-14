@@ -1,3 +1,12 @@
+sapgui-package (0.0.4) unstable; urgency=low
+
+  * [4616690] link icons to hicolor theme
+  * [bf29ac3] add Homepage: URL
+  * [41c0d9d] bump standards version and add ${misc:Depends} and explicit
+    python dependency to avoid lintian warnings.
+
+ -- Guido Günther <agx@sigxcpu.org>  Tue, 14 Apr 2009 13:37:31 +0200
+
 sapgui-package (0.0.3) unstable; urgency=low
 
   * [4307afa] fix build for amd64 since the package is built against

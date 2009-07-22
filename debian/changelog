@@ -1,3 +1,10 @@
+sapgui-package (0.0.5) unstable; urgency=low
+
+  * [8797132] depend on openjdk-jre to add a non virtual dependency for the
+    jre
+
+ -- Guido Günther <agx@sigxcpu.org>  Wed, 22 Jul 2009 16:39:03 +0200
+
 sapgui-package (0.0.4) unstable; urgency=low
 
   * [4616690] link icons to hicolor theme

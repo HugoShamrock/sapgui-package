@@ -106,12 +106,16 @@ def gen_install(debiandir):
 
 
 def gen_rules(debiandir, arch):
-    # ia32 libs is lacking KDE and Gnome libs:
-    excludes = [ "libKde3Connect.so", "libGnomeConnect.so" ]
     if arch == "amd64":
-        amd64_ignore = " ".join([ "--exclude=%s" % e for e in  excludes ])
+        # ignore 32bit libs on amd64
+        excludes = [ "libGnomeConnect.so", "libJPlatin.so" ]
+        # these were additionally shipped with 719:
+        excludes += [ "libKde3Connect.so" ]
     else:
-        amd64_ignore = ""
+        # ignore 64bit libs on i386
+        excludes = [ "libGnomeConnect64.so", "libJPlatin64.so" ]
+    ignore_libs = " ".join([ "--exclude=%s" % e for e in  excludes ])
+
     contents = """#!/usr/bin/make -f
 export DH_COMPAT=5
 
@@ -121,7 +125,7 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 
 install/sapgui::
 	rm -rf dest/usr/lib/sapgui/SAPGUI
-""" % amd64_ignore
+""" % ignore_libs
     write_file(debiandir, "rules", contents)
     os.chmod(os.path.join(debiandir,"rules"), 0755)
 

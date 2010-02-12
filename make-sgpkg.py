@@ -55,11 +55,11 @@ def write_file(debdir, name, contents):
 def get_version(destdir):
     dir = None
     try:
-        dir = glob.glob(os.path.join(destdir,'usr/lib/sapgui/SAPGUI*rev*'))[0]
+        dir = glob.glob(os.path.join(destdir,'usr/lib/sapgui/SAPGUI*'))[0]
         version = os.path.basename(dir)[6:]
     except IndexError:
         raise SapGuiPkgError, "Cannot determin version number from subdir '%s'" % dir
-    if not re.match("[0-9\.]+rev[0-9]+", version):
+    if not re.match("[0-9\.](rev[0-9]+)?", version):
         raise SapGuiPkgError, "Cannot determin version number from '%s'" % version
     return version
 

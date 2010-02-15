@@ -181,6 +181,10 @@ def main(argv):
 
     verbose = options.verbose
 
+    if os.getuid() == 0:
+        print >>sys.stderr, "Don't run %s as root." % argv[0]
+	sys.exit(1)
+
     if os.path.exists(os.path.expanduser(properties)):
         print >>sys.stderr, "%s exists - this can cause problems. Please remove the file first." % properties
         sys.exit(1)

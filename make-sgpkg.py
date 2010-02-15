@@ -152,8 +152,14 @@ usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/16x16/apps/SAPClients.png /usr/sha
 
 def build_sapgui_deb(tmpdir):
     curdir = os.path.abspath(os.path.curdir)
+    build_cmd = ["fakeroot", "dpkg-buildpackage", "-b" ,"-uc", "-us"]
     os.chdir(tmpdir)
-    subprocess.call(["fakeroot", "dpkg-buildpackage", "-b" ,"-uc", "-us"])
+    try:
+        ret = subprocess.call(build_cmd)
+    except OSError, msg:
+        raise SapGuiPkgError, "Cannot run '%s': %s" % (" ".join(build_cmd), msg)
+    if ret:
+        raise SapGuiPkgError, "Error building package."
     os.chdir(curdir)
 
 

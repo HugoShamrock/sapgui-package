@@ -1,3 +1,15 @@
+sapgui-package (0.0.6) unstable; urgency=low
+
+  * [1c2e7c0] Fix version parsing for Sapgui 720
+  * [94eb78c] Exclude 64bit libs on 32bit build and vice versa
+  * [dcc6a23] Handle package build errors.
+  * [d8ef7ea] Abort if running as root or under fakeroot. Running as
+    root is unsafe and we invoke fakeroot ourselfes.
+  * [6a27a5e] Explicitly depend on dpkg-buildpackage to make Ubuntu
+    happy.
+
+ -- Guido Günther <agx@sigxcpu.org>  Tue, 16 Feb 2010 21:37:42 +0100
+
 sapgui-package (0.0.5) unstable; urgency=low
 
   * [8797132] depend on openjdk-jre to add a non virtual dependency for the

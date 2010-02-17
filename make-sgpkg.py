@@ -86,7 +86,7 @@ Standards-Version: 3.8.0
 
 Package: sapgui
 Architecture: i386 amd64
-Depends: ${shlibs:Depends}, openjdk-6-jre | java2-runtime
+Depends: ${shlibs:Depends}, openjdk-6-jre | sun-java6-bin | java6-runtime
 Description: SAP GUI for the Java Environment
  This package has been automatically created with sapgui-package %(version)s
 """ % dict(name=name, email=email, version=version)
@@ -185,7 +185,7 @@ def main(argv):
 
     if os.getuid() == 0:
         print >>sys.stderr, "Don't run %s as root." % argv[0]
-	sys.exit(1)
+        sys.exit(1)
 
     if os.path.exists(os.path.expanduser(properties)):
         print >>sys.stderr, "%s exists - this can cause problems. Please remove the file first." % properties

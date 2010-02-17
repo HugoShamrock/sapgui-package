@@ -1,3 +1,10 @@
+sapgui-package (0.0.7) unstable; urgency=low
+
+  * [9a9f4a6] Bump standards version
+  * [b7b4115] Fix dpkg-dev dependency
+
+ -- Guido Günther <agx@sigxcpu.org>  Wed, 17 Feb 2010 06:12:23 +0100
+
 sapgui-package (0.0.6) unstable; urgency=low
 
   * [1c2e7c0] Fix version parsing for Sapgui 720

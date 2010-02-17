@@ -10,7 +10,7 @@ Homepage: https://honk.sigxcpu.org/piki/projects/sapgui-package/
 
 Package: sapgui-package
 Architecture: all
-Depends:  cdbs, fakeroot, dpkg-buildpackage,
+Depends:  cdbs, fakeroot, dpkg-dev,
  openjdk-6-jre | java5-runtime, python,
  ${misc:Depends}, ${python:Depends},
  libxext6, libxpm4, libxt6, libxp6,

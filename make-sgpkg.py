@@ -177,6 +177,8 @@ def main(argv):
                       help="full name used in the maintainer field of the package")
     parser.add_option("--email", default="agx@sigxpcu.org",
                       help="email address used in the maintainer field of the package")
+    parser.add_option("--no-clean", action="store_false", dest="clean", default=True,
+                      help="don't cleanup after build")
     (options, args) = parser.parse_args(argv[1:])
 
     verbose = options.verbose
@@ -226,7 +228,7 @@ def main(argv):
         print "Created '%s'" % pkg
         ret = 0
 
-    if tmpdir:
+    if tmpdir and options.clean:
         if verbose:
             print "Cleaning up tempdir at %s" % tmpdir
         shutil.rmtree(tmpdir)

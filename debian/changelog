@@ -1,3 +1,15 @@
+sapgui-package (0.0.8) unstable; urgency=low
+
+  * Tested with PlatinGUI-Linux-720.jar
+  * [a169e6d] Make glob call more robust
+  * [375763f] Add --no-clean option to ease debugging.
+  * [0fa8223] Depend on java6-runtime instead of java2-run since sapgui
+    as of 7.20 needs Java 6.
+  * [57a1357] Exclude 32bit binaries when calling dh_shlibdeps when
+    building on amd64.
+
+ -- Guido Günther <agx@sigxcpu.org>  Thu, 18 Feb 2010 17:49:13 +0100
+
 sapgui-package (0.0.7) unstable; urgency=low
 
   * [9a9f4a6] Bump standards version

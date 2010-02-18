@@ -109,11 +109,14 @@ def gen_rules(debiandir, arch):
     if arch == "amd64":
         # ignore 32bit libs on amd64
         excludes = [ "libGnomeConnect.so", "libJPlatin.so" ]
+        # exclude 32bit binaries
+        excludes += [ "bin/sapftp", "bin/saphttp" ]
         # these were additionally shipped with 719:
         excludes += [ "libKde3Connect.so" ]
     else:
         # ignore 64bit libs on i386
         excludes = [ "libGnomeConnect64.so", "libJPlatin64.so" ]
+
     ignore_libs = " ".join([ "--exclude=%s" % e for e in  excludes ])
 
     contents = """#!/usr/bin/make -f

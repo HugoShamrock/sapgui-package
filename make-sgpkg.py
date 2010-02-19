@@ -47,9 +47,12 @@ def extract_sapgui_jar(jar, destdir):
 
 
 def write_file(debdir, name, contents):
-    f = file(os.path.join(debdir, name), 'w')
-    f.write(contents)
-    f.close()
+    try:
+        f = file(os.path.join(debdir, name), 'w')
+        f.write(contents)
+        f.close()
+    except IOError, msg:
+        raise SapGuiPkgError, "Error writing file '%s': %s" % (name, msg)
 
 
 def get_version(destdir):

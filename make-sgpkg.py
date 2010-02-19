@@ -156,6 +156,21 @@ usr/lib/sapgui/SAPGUI%(version)s/inst/hicolor/16x16/apps/SAPClients.png /usr/sha
     write_file(debiandir, "links", contents)
 
 
+def gen_desktop(destdir):
+    applications = 'usr/share/applications/'
+    contents = """[Desktop Entry]
+Version=1.0
+Type=Application
+Name=SAP GUI Logon
+Exec=sapguilogon
+Icon=guilogon
+"""
+    os.makedirs(os.path.join(destdir, applications))
+    write_file(destdir,
+               os.path.join(applications, "sapguilogon.desktop"),
+               contents)
+
+
 def build_sapgui_deb(tmpdir):
     curdir = os.path.abspath(os.path.curdir)
     build_cmd = ["fakeroot", "dpkg-buildpackage", "-b" ,"-uc", "-us"]
@@ -223,6 +238,7 @@ def main(argv):
         gen_install(debiandir)
         gen_copyright(debiandir)
         gen_links(debiandir, sg_version)
+        gen_desktop(destdir)
 
         print "Building Debain package at '%s'" % pkgdir
         build_sapgui_deb(pkgdir)

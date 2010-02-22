@@ -1,3 +1,11 @@
+sapgui-package (0.0.9) unstable; urgency=low
+
+  * [7f9cbe0] Catch file write errors
+  * [ab68fb8] Add desktop file
+  * [c306033] Amd64 needs libstdc++5 for libGnomeConnect64.so
+
+ -- Guido Günther <agx@sigxcpu.org>  Mon, 22 Feb 2010 14:49:14 +0100
+
 sapgui-package (0.0.8) unstable; urgency=low
 
   * Tested with PlatinGUI-Linux-720.jar

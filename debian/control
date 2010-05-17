@@ -15,7 +15,7 @@ Depends:  cdbs, fakeroot, dpkg-dev,
  ${misc:Depends}, ${python:Depends},
  libxext6, libxpm4, libxt6, libxp6,
  libgnomevfs2-0 [i386], libbonobo2-0 [i386], kdelibs4c2a [i386],
- ia32-libs [amd64], libstdc++5 [amd64]
+ ia32-libs [amd64]
 Description: utility to build SAP GUI related Debian packages
  This package provides the capability to create a Debian package for the
  Platinum Java SAP GUI from the provided JAR by just running 

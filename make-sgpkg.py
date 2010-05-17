@@ -90,6 +90,7 @@ Standards-Version: 3.8.0
 Package: sapgui
 Architecture: i386 amd64
 Depends: ${shlibs:Depends}, openjdk-6-jre | sun-java6-bin | java6-runtime
+Recommends: libstdc++5 [amd64]
 Description: SAP GUI for the Java Environment
  This package has been automatically created with sapgui-package %(version)s
 """ % dict(name=name, email=email, version=version)
@@ -116,6 +117,9 @@ def gen_rules(debiandir, arch):
         excludes += [ "bin/sapftp", "bin/saphttp" ]
         # these were additionally shipped with 719:
         excludes += [ "libKde3Connect.so" ]
+        # This one needs libstdc++.so.5 which isn't available in recent
+        # distros and not everybody needs it
+        excludes += [ "libGnomeConnect64.so" ]
     else:
         # ignore 64bit libs on i386
         excludes = [ "libGnomeConnect64.so", "libJPlatin64.so" ]

@@ -1,3 +1,9 @@
+sapgui-package (0.0.9~bpo50+1) lenny-backports; urgency=low
+
+  * Rebuild for lenny-backports.
+
+ -- Guido Günther <agx@sigxcpu.org>  Mon, 12 Apr 2010 10:12:45 +0200
+
 sapgui-package (0.0.9) unstable; urgency=low
 
   * [7f9cbe0] Catch file write errors

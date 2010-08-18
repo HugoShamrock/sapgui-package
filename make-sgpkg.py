@@ -135,6 +135,7 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 
 install/sapgui::
 	rm -rf dest/usr/lib/sapgui/SAPGUI
+	sed -i '/doc\/install\/install\.htm~/d' dest/usr/lib/sapgui/*/install.db
 """ % ignore_libs
     write_file(debiandir, "rules", contents)
     os.chmod(os.path.join(debiandir,"rules"), 0755)

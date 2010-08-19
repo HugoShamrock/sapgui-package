@@ -1,3 +1,14 @@
+sapgui-package (0.0.10) unstable; urgency=low
+
+  * [141c775] Work around libstdc++.so.5 needed on amd64
+  * [0755ff4] Remove tempfile the SAP developers left for us introduced in
+    7.20rev3
+  * [d081e33] Move the packages needed to build the sapgui package as
+    build-deps to the generated sapgui source package instead of depending on
+    it directly.  This way sapgui-package sapgui-package can be arch all.
+
+ -- Guido Günther <agx@sigxcpu.org>  Thu, 19 Aug 2010 09:10:29 +0200
+
 sapgui-package (0.0.9) unstable; urgency=low
 
   * [7f9cbe0] Catch file write errors

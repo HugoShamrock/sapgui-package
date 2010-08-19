@@ -84,7 +84,9 @@ def gen_control(debiandir, version, name, email):
 Section: non-free/devel
 Priority: optional
 Maintainer: %(name)s <%(email)s>
-Build-Depends: debhelper (>= 4.0.0)
+Build-Depends: debhelper (>= 4.0.0),
+ libxext6, libxpm4, libxt6, libxp6, libgnomevfs2-0 [i386],
+ libbonobo2-0 [i386], kdelibs4c2a [i386], ia32-libs [amd64]
 Standards-Version: 3.8.0
 
 Package: sapgui
